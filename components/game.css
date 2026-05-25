@@ -1,0 +1,245 @@
+.game-page {
+  width: min(430px, 100%);
+  margin: 0 auto;
+  padding: 14px 10px 28px;
+  display: grid;
+  gap: 14px;
+}
+
+.game-card {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.game-head {
+  padding: 14px;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  gap: 12px;
+}
+
+.date-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.pill {
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 6px 9px;
+  white-space: nowrap;
+}
+
+.game-head h1 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 32px;
+  line-height: 0.98;
+}
+
+.game-body {
+  padding: 14px;
+  display: grid;
+  gap: 12px;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.metric {
+  min-height: 62px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 9px;
+}
+
+.metric span {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 850;
+  margin-bottom: 7px;
+}
+
+.metric strong {
+  font-size: 20px;
+}
+
+.prompt {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.42;
+  min-height: 36px;
+}
+
+.solved-list {
+  display: grid;
+  gap: 7px;
+}
+
+.solved-category {
+  min-height: 58px;
+  border-radius: 8px;
+  padding: 10px;
+  color: #0d1713;
+  background: var(--green);
+  display: grid;
+  align-content: center;
+  gap: 4px;
+}
+
+.solved-category:nth-child(2) { background: var(--blue); }
+.solved-category:nth-child(3) { background: var(--gold); }
+.solved-category:nth-child(4) { background: var(--coral); }
+
+.solved-category b {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.solved-category span {
+  font-size: 12px;
+  font-weight: 760;
+}
+
+.word-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+}
+
+.word-tile {
+  min-height: 58px;
+  border-radius: 8px;
+  border: 1px solid #354540;
+  background: var(--tile);
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 6px;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1.04;
+  text-transform: none;
+  cursor: pointer;
+}
+
+.word-tile.selected {
+  background: var(--selected);
+  color: #0d1713;
+  border-color: var(--selected);
+}
+
+.word-tile.solved {
+  opacity: 0.18;
+  cursor: default;
+}
+
+.mistakes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.dot.used {
+  background: var(--danger);
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.action {
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.action.primary {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #0d1713;
+}
+
+.action:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.explanation {
+  display: grid;
+  gap: 10px;
+}
+
+.explanation h2,
+.explanation h3 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.explanation p,
+.explanation li {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.answer-groups {
+  display: grid;
+  gap: 12px;
+}
+
+.answer-groups article {
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+}
+
+.answer-groups ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
+
+@media (min-width: 900px) {
+  .game-page {
+    width: min(900px, 100%);
+    grid-template-columns: 430px 1fr;
+    align-items: start;
+    padding-top: 24px;
+  }
+}
