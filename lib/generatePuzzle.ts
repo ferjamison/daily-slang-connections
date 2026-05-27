@@ -150,10 +150,11 @@ export async function generatePuzzle(
   }
 
   return {
+    ...parsed,
     id: crypto.randomUUID(),
     date,
     slot,
+    title: "Daily Slang Connections",
     created_at: new Date().toISOString(),
-    ...parsed,
   };
 }

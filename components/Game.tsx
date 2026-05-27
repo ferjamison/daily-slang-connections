@@ -120,7 +120,7 @@ export function Game({ puzzle }: { puzzle: Puzzle }) {
             })}</span>
             <span className="pill">B1-B2 slang</span>
           </div>
-          <h1>{puzzle.title}</h1>
+          <h1>Daily Slang Connections</h1>
         </div>
 
         <div className="game-body">

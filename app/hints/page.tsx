@@ -17,7 +17,7 @@ export default async function HintsPage() {
         exact category names.
       </p>
       <section className="card prose">
-        <h2>{puzzle.title}</h2>
+        <h2>Daily Slang Connections</h2>
         <ol>
           {puzzle.hints.map((hint) => (
             <li key={hint}>{hint}</li>
