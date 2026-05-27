@@ -4,7 +4,7 @@ import { learnArticles } from "@/lib/learn";
 
 export const metadata: Metadata = {
   title: "Learn American Slang",
-  description: "Simple American slang guides for English learners.",
+  description: "Simple American slang guides for daily word games and casual English.",
 };
 
 export default function LearnPage() {
@@ -12,8 +12,8 @@ export default function LearnPage() {
     <main className="page narrow prose">
       <h1>Learn American Slang</h1>
       <p>
-        Short guides for English learners who want to understand casual American phrases in real
-        situations.
+        Short guides to casual American phrases, common meanings, and the kinds of connections
+        that appear in daily slang puzzles.
       </p>
       <section className="article-list">
         {learnArticles.map((article) => (

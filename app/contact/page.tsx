@@ -12,7 +12,7 @@ export default function ContactPage() {
       <section className="card prose">
         <p>
           Questions, corrections, and feedback are welcome. If you notice a phrase that feels
-          unclear, outdated, or not useful for English learners, please let us know.
+          unclear, outdated, too obscure, or placed in the wrong category, please let us know.
         </p>
         <p>
           Email: <a href="mailto:contact@dailyslangcategories.com">contact@dailyslangcategories.com</a>

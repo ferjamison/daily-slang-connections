@@ -10,12 +10,12 @@ export default async function HomePage() {
     <main className="home-page">
       <section className="home-hero">
         <div className="home-hero-copy">
-          <p className="eyebrow">American slang for English learners</p>
+          <p className="eyebrow">A daily English slang puzzle</p>
           <h1>Daily Slang Connections</h1>
           <p>
-            A daily word-grouping game that helps you learn real American slang by meaning,
-            situation, and tone. Sort 16 casual words or phrases into 4 clear groups, then review
-            simple English explanations written for B1-B2 learners.
+            A quick word-grouping game you can play anytime. Sort 16 slang words or casual phrases
+            into 4 hidden groups, then check the answers to see the shared meaning, situation, or
+            tone behind each set.
           </p>
           <div className="hero-actions">
             <Link className="button-link primary" href="/today">
@@ -44,31 +44,31 @@ export default async function HomePage() {
       <section className="home-section prose">
         <h2>What Is Daily Slang Connections?</h2>
         <p>
-          Daily Slang Connections is a short American English learning game. Each puzzle gives you
-          everyday slang, texting phrases, casual reactions, and spoken expressions. Instead of
-          memorizing one word at a time, you compare phrases and find the shared idea behind them.
+          Daily Slang Connections is a short American English puzzle game. Each puzzle gives you
+          everyday slang, texting phrases, casual reactions, and spoken expressions. Your job is to
+          spot the hidden connections and group the words before you run out of tries.
         </p>
         <p>
-          This is useful because slang is not only vocabulary. It also carries attitude. A phrase
-          can sound relaxed, excited, suspicious, friendly, annoyed, or playful. Grouping phrases
-          helps you notice those patterns faster.
+          The fun comes from the little shift in thinking: some groups are about meaning, some are
+          about social situations, and some are about tone. A phrase can sound relaxed, excited,
+          suspicious, friendly, annoyed, or playful.
         </p>
       </section>
 
       <section className="home-grid">
         <article className="card prose">
-          <h2>For English Learners</h2>
+          <h2>Fast Daily Play</h2>
           <p>
-            The game is designed for learners who already know basic English but want to understand
-            videos, podcasts, comments, and everyday American conversation more comfortably.
+            Each round is small enough to play in a few minutes, but tricky enough to make you
+            compare meanings and second-guess your first instinct.
           </p>
         </article>
 
         <article className="card prose">
-          <h2>Twice Daily Practice</h2>
+          <h2>Twice Daily Puzzles</h2>
           <p>
             New puzzles are created every morning and evening. Older puzzles stay available in the
-            archive, so you can practice when you have more study time.
+            archive, so there is always another board to try.
           </p>
         </article>
 
@@ -76,13 +76,13 @@ export default async function HomePage() {
           <h2>Simple Explanations</h2>
           <p>
             After each puzzle, answer notes explain every group and each slang phrase in simple
-            English. The goal is practical understanding, not complicated grammar labels.
+            English. They are there when you want the meaning behind the game.
           </p>
         </article>
       </section>
 
       <section className="home-section prose">
-        <h2>Start Learning</h2>
+        <h2>Start Playing</h2>
         <div className="article-list">
           <Link href="/today">
             <strong>Play today's puzzle</strong>
@@ -100,7 +100,7 @@ export default async function HomePage() {
       </section>
 
       <section className="home-section prose">
-        <h2>Learn American Slang</h2>
+        <h2>Slang Guides</h2>
         <div className="article-list">
           {learnArticles.map((article) => (
             <Link href={`/learn/${article.slug}`} key={article.slug}>

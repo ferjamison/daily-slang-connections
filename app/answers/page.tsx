@@ -16,8 +16,8 @@ export default async function AnswersPage() {
         <h1>Today's Answers</h1>
         <p>{puzzle.full_explanation}</p>
         <p>
-          These notes are written for B1-B2 English learners. Read the group explanation first,
-          then review each slang word or phrase in the table below.
+          These notes explain the answer in plain English. Read the group explanation first, then
+          review each slang word or phrase in the table below.
         </p>
       </section>
 
@@ -29,8 +29,8 @@ export default async function AnswersPage() {
           appear when something feels strange or not trustworthy.
         </p>
         <p>
-          After reading each group, make one simple sentence with two of the phrases. This turns
-          the answer page into a short speaking or writing exercise.
+          After reading each group, look back at the puzzle board and notice which words were close
+          traps. That is usually where the puzzle becomes interesting.
         </p>
       </section>
 

@@ -118,7 +118,7 @@ export function Game({ puzzle }: { puzzle: Puzzle }) {
               month: "long",
               day: "numeric",
             })}</span>
-            <span className="pill">B1-B2 slang</span>
+            <span className="pill">daily slang</span>
           </div>
           <h1>Daily Slang Connections</h1>
         </div>
@@ -174,7 +174,7 @@ export function Game({ puzzle }: { puzzle: Puzzle }) {
       </section>
 
       <section className="explanation card">
-        <h2>{isComplete ? "Full Answer" : "Learning Note"}</h2>
+        <h2>{isComplete ? "Full Answer" : "Quick Note"}</h2>
         <p>{isComplete ? puzzle.full_explanation : "Hints help you notice meaning or usage, but they do not reveal the category name."}</p>
         <div className="answer-groups">
           {(isComplete ? puzzle.categories : solved).map((category) => (

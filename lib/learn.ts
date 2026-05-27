@@ -40,7 +40,7 @@ export const learnArticles: LearnArticle[] = [
   {
     slug: "what-does-low-key-mean",
     title: "What Does Low-Key Mean?",
-    description: "A simple learner-friendly guide to low-key in American casual English.",
+    description: "A simple guide to low-key in American casual English.",
     sections: [
       {
         heading: "Meaning",
@@ -60,21 +60,21 @@ export const learnArticles: LearnArticle[] = [
         heading: "Common Groups",
         body: [
           "Low-key often appears with words about feelings, opinions, or intensity. It may connect with kind of, sorta, a little, or quietly.",
-          "Learning it in a group helps you notice that slang is not only about dictionary meaning. It is also about tone.",
+          "Seeing it in a group helps you notice that slang is not only about dictionary meaning. It is also about tone.",
         ],
       },
     ],
   },
   {
-    slug: "common-american-slang-for-english-learners",
-    title: "Common American Slang for English Learners",
-    description: "A practical guide to learning American slang without memorizing random lists.",
+    slug: "common-american-slang-word-game",
+    title: "Common American Slang in Daily Word Games",
+    description: "A practical guide to common American slang and how phrases connect by situation.",
     sections: [
       {
         heading: "Start with Situations",
         body: [
           "The best way to learn slang is by situation. People use different words when they agree, complain, make plans, compliment someone, talk about money, or react to news.",
-          "For example, bet, sounds good, and I am down can all show agreement. Learning them together is easier than learning them alone.",
+          "For example, bet, sounds good, and I am down can all show agreement. Grouping them together makes the connection easier to spot.",
         ],
       },
       {
@@ -116,7 +116,7 @@ export const learnArticles: LearnArticle[] = [
         heading: "Why They Overlap",
         body: [
           "Many casual phrases are both idiom-like and slang-like. Hit me up means contact me, and spill the tea means share gossip. Their meanings are not literal, and they are also informal.",
-          "For learners, the practical question is not always What label is this? A better question is When can I use this phrase naturally?",
+          "The practical question is not always What label is this? A better question is When does this phrase sound natural?",
         ],
       },
     ],

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: "%s | Daily Slang Connections",
   },
   description:
-    "A daily American slang word-grouping game for English learners. Sort 16 casual phrases into 4 clear categories.",
+    "A daily American slang word-grouping game. Sort 16 casual phrases into 4 hidden categories.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -40,8 +40,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/learn">Learn</Link>
             </nav>
             <p>
-              Daily Slang Connections is an independent learning game for English learners. It is
-              not affiliated with any newspaper, game publisher, or testing company.
+              Daily Slang Connections is an independent daily slang puzzle game. It is not
+              affiliated with any newspaper, game publisher, or testing company.
             </p>
           </footer>
         </div>

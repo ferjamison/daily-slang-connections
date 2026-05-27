@@ -91,7 +91,7 @@ export async function generatePuzzle(
       {
         role: "developer",
         content:
-          "You create clean American English learning puzzles. Output only valid JSON matching the schema. Use natural, current, common American casual phrases. Do not invent slang. Avoid obscure, offensive, sexual, hateful, or very low-frequency terms. Explanations must be simple B1-B2 English.",
+          "You create clean American English slang word-grouping puzzles. Output only valid JSON matching the schema. Use natural, current, common American casual phrases. Do not invent slang. Avoid obscure, offensive, sexual, hateful, or very low-frequency terms. Explanations must be plain, simple English.",
       },
       {
         role: "user",

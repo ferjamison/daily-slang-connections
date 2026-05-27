@@ -20,7 +20,7 @@ export default function PrivacyPolicyPage() {
         <p>
           We may collect basic technical information such as pages visited, device type, browser,
           approximate region, and error logs. This helps us understand whether the site works well
-          and which learning pages are useful.
+          and which puzzle or guide pages are useful.
         </p>
         <h2>Cookies and Analytics</h2>
         <p>

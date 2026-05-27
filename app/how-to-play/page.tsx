@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "How to Play",
-  description: "Learn the rules of Daily Slang Connections and how to use it for English study.",
+  description: "Learn the rules of Daily Slang Connections and how the daily slang puzzle works.",
 };
 
 export default function HowToPlayPage() {
@@ -11,9 +11,9 @@ export default function HowToPlayPage() {
       <section className="card prose">
         <h1>How to Play Daily Slang Connections</h1>
         <p>
-          Daily Slang Connections is a word-grouping game for English learners. Every puzzle has
-          16 lowercase American slang words or casual phrases. Your goal is to find 4 groups, with
-          4 words in each group. Each group shares one meaning, social situation, or speaking
+          Daily Slang Connections is a word-grouping game built around American slang and casual
+          English. Every puzzle has 16 lowercase words or phrases. Your goal is to find 4 groups,
+          with 4 words in each group. Each group shares one meaning, social situation, or speaking
           purpose.
         </p>
       </section>
@@ -49,29 +49,28 @@ export default function HowToPlayPage() {
       </section>
 
       <section className="card prose">
-        <h2>Study Method for English Learners</h2>
+        <h2>How to Think Through a Board</h2>
         <p>
           Start with words you already know. Then ask which other words could appear in the same
-          short conversation. This is better than memorizing a random list because slang depends on
-          context and tone.
+          short conversation. Some categories are direct synonyms, but others are about a shared
+          scene, like texting, canceling plans, reacting to gossip, or talking about money.
         </p>
         <p>
-          After you finish, write one simple sentence for each new phrase. Keep the sentence short:
-          "That movie was fire" or "He bailed on the plan." This makes the slang easier to
-          remember and easier to use naturally.
+          After you finish, check the answer explanations. They give the plain meaning behind the
+          group, so the board feels fair even when a phrase was new to you.
         </p>
       </section>
 
       <section className="card prose">
-        <h2>Why Grouping Helps Memory</h2>
+        <h2>Why Grouping Feels Good</h2>
         <p>
-          Your brain remembers vocabulary better when words are connected. A group gives you a
-          small map: words for agreement, words for money, words for texting, words for suspicion,
-          words for relaxing, and so on.
+          A good puzzle makes you compare words that almost fit, then notice the cleaner pattern.
+          A group gives you a small map: words for agreement, words for money, words for texting,
+          words for suspicion, words for relaxing, and so on.
         </p>
         <p>
-          This kind of practice also improves listening. When you hear an unfamiliar phrase in a
-          video or conversation, you can use the situation to guess the meaning.
+          That comparison is the core of the game. The answer should feel clear once you see it,
+          even if the route there was a little tricky.
         </p>
       </section>
     </main>
