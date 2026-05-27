@@ -44,7 +44,8 @@ export async function getArchivePuzzles(): Promise<Puzzle[]> {
     .from("puzzles")
     .select("*")
     .order("date", { ascending: false })
-    .limit(30);
+    .order("slot", { ascending: true })
+    .limit(60);
 
   if (error || !data?.length) return [samplePuzzle];
   return data.map(normalizePuzzle);

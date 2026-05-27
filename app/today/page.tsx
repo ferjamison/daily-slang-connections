@@ -3,8 +3,8 @@ import { Game } from "@/components/Game";
 import { getPuzzleByDate } from "@/lib/puzzles";
 
 export const metadata: Metadata = {
-  title: "Today’s American Slang Puzzle",
-  description: "Play today’s Daily Slang Connections puzzle and learn casual American English phrases.",
+  title: "Today's American Slang Puzzle",
+  description: "Play today's Daily Slang Connections puzzle and learn casual American English phrases.",
 };
 
 export default async function TodayPage({

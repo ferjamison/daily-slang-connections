@@ -31,6 +31,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </nav>
           </header>
           {children}
+          <footer className="site-footer">
+            <nav aria-label="Footer navigation">
+              <Link href="/about">About</Link>
+              <Link href="/contact">Contact</Link>
+              <Link href="/privacy-policy">Privacy Policy</Link>
+              <Link href="/terms">Terms</Link>
+              <Link href="/learn">Learn</Link>
+            </nav>
+            <p>
+              Daily Slang Connections is an independent learning game for English learners. It is
+              not affiliated with any newspaper, game publisher, or testing company.
+            </p>
+          </footer>
         </div>
       </body>
     </html>
