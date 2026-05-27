@@ -104,6 +104,136 @@ button {
   padding: 16px;
 }
 
+.home-page {
+  padding: 18px 16px 28px;
+  display: grid;
+  gap: 18px;
+}
+
+.home-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.home-hero-copy,
+.today-preview,
+.home-section {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.home-hero-copy {
+  display: grid;
+  gap: 16px;
+  align-content: center;
+  min-height: 360px;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.home-hero h1 {
+  margin: 0;
+  max-width: 680px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(42px, 9vw, 76px);
+  line-height: 0.98;
+}
+
+.home-hero p {
+  max-width: 640px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.62;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.button-link {
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.button-link.primary {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.today-preview {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+
+.preview-head {
+  display: grid;
+  gap: 4px;
+}
+
+.preview-head span {
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.preview-head strong {
+  font-size: 20px;
+}
+
+.mini-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.mini-grid span {
+  min-height: 54px;
+  border: 1px solid var(--line);
+  background: var(--tile);
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  padding: 8px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 850;
+}
+
+.today-preview a {
+  color: var(--ink);
+  font-weight: 900;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
 .narrow {
   width: min(720px, 100%);
   margin: 0 auto;
@@ -235,5 +365,27 @@ button {
 
   .navlinks a:nth-child(n + 4) {
     display: none;
+  }
+
+  .home-page {
+    padding: 12px 10px 24px;
+  }
+
+  .home-hero,
+  .home-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-hero-copy {
+    min-height: auto;
+  }
+
+  .home-hero p {
+    font-size: 15px;
+  }
+
+  .hero-actions a {
+    flex: 1 1 180px;
+    text-align: center;
   }
 }
