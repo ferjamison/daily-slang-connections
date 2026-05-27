@@ -17,7 +17,7 @@ export default async function ArchivePage() {
       <section className="card prose">
         {puzzles.map((puzzle) => (
           <p key={puzzle.id}>
-            <Link href={`/today?date=${puzzle.date}`}>
+            <Link href={`/today?date=${puzzle.date}&slot=${puzzle.slot}`}>
               {puzzle.date} - {puzzle.slot}
             </Link>
           </p>
