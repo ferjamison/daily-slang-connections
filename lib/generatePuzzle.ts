@@ -71,12 +71,20 @@ function normalizeGeneratedPuzzle(puzzle: z.infer<typeof generatedPuzzleSchema>)
 export async function generatePuzzle(
   date = puzzleDateShanghai(),
   slot = currentShanghaiSlot(),
+  excludedWords: string[] = [],
 ): Promise<Puzzle> {
   if (!process.env.OPENAI_API_KEY) {
     throw new Error("OPENAI_API_KEY is required to generate puzzles.");
   }
 
   const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const avoidList = excludedWords
+    .map((word) => word.toLowerCase().trim())
+    .filter(Boolean)
+    .slice(0, 220);
+  const avoidInstruction = avoidList.length
+    ? ` Do not use these recently used words or phrases: ${avoidList.join(", ")}.`
+    : "";
   const response = await openai.responses.create({
     model: "gpt-5.4-mini",
     input: [
@@ -87,7 +95,7 @@ export async function generatePuzzle(
       },
       {
         role: "user",
-        content: `Generate one ${slot} Daily Slang Connections puzzle for ${date}. It must have exactly 16 unique lowercase slang words or casual phrases and exactly 4 categories of 4 words. Categories must have one clear solution with no ambiguous overlaps. Include spoiler-light hints and simple definitions for every word.`,
+        content: `Generate one ${slot} Daily Slang Connections puzzle for ${date}. It must have exactly 16 unique lowercase slang words or casual phrases and exactly 4 categories of 4 words. Categories must have one clear solution with no ambiguous overlaps. Include spoiler-light hints and simple definitions for every word.${avoidInstruction}`,
       },
     ],
     text: {
@@ -144,6 +152,11 @@ export async function generatePuzzle(
   const uniqueWords = new Set(parsed.words);
   if (uniqueWords.size !== 16) {
     throw new Error("Generated puzzle must contain 16 unique words.");
+  }
+  const excludedSet = new Set(avoidList);
+  const repeatedWords = parsed.words.filter((word) => excludedSet.has(word));
+  if (repeatedWords.length) {
+    throw new Error(`Generated puzzle reused excluded words: ${repeatedWords.join(", ")}`);
   }
   if (!validateCategoryCoverage(parsed.words, parsed.categories)) {
     throw new Error("Generated puzzle category words do not exactly match the 16 puzzle words.");

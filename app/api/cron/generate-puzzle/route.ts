@@ -24,7 +24,14 @@ export async function GET(request: Request) {
     );
   }
 
-  const puzzle = await generatePuzzle();
+  const { data: recentPuzzles } = await supabase
+    .from("puzzles")
+    .select("words")
+    .order("date", { ascending: false })
+    .limit(14);
+  const excludedWords = recentPuzzles?.flatMap((row) => row.words as string[]) ?? [];
+
+  const puzzle = await generatePuzzle(undefined, undefined, excludedWords);
   const { error } = await supabase.from("puzzles").upsert(
     {
       date: puzzle.date,
