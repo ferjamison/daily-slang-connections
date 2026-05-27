@@ -3,6 +3,7 @@ import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://dailyslangcategories.com"),
   title: {
     default: "Daily Slang Connections",
     template: "%s | Daily Slang Connections",
