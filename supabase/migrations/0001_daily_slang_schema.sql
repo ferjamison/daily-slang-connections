@@ -20,16 +20,10 @@ create table if not exists public.puzzles (
 create table if not exists public.userprogress (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references auth.users(id) on delete cascade,
-  puzzle_date date not null references public.puzzles(date) on delete cascade,
-  selected_words jsonb not null default '[]'::jsonb,
+  puzzle_date date not null,
   solved_at timestamptz,
-  attempts integer not null default 0,
-  status text not null default 'in_progress',
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
-  constraint userprogress_selected_words_is_array check (jsonb_typeof(selected_words) = 'array'),
-  constraint userprogress_attempts_nonnegative check (attempts >= 0),
-  constraint userprogress_status_valid check (status in ('in_progress', 'solved', 'failed')),
   unique (user_id, puzzle_date)
 );
 

@@ -29,8 +29,5 @@ export type UserProgress = {
   id: string;
   user_id: string;
   puzzle_date: string;
-  selected_words: string[];
   solved_at: string | null;
-  attempts: number;
-  status: "in_progress" | "solved" | "failed";
 };

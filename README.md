@@ -38,4 +38,4 @@ supabase db push
 
 Vercel Cron schedules are UTC.
 
-The route requires `CRON_SECRET` and writes to Supabase with `SUPABASE_SERVICE_ROLE_KEY`.
+The route requires `CRON_SECRET`, generates puzzles with OpenAI `gpt-5.4-mini`, and writes to Supabase with `SUPABASE_SERVICE_ROLE_KEY`.

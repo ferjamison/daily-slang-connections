@@ -48,18 +48,37 @@ function validateCategoryCoverage(words: string[], categories: { words: string[]
     .flatMap((category) => category.words)
     .map((word) => word.toLowerCase().trim())
     .sort();
+
   return normalizedWords.length === categoryWords.length &&
     normalizedWords.every((word, index) => word === categoryWords[index]);
 }
 
-export async function generatePuzzleWithOpenAI(date = puzzleDateShanghai(), slot = currentShanghaiSlot()): Promise<Puzzle> {
+function normalizeGeneratedPuzzle(puzzle: z.infer<typeof generatedPuzzleSchema>) {
+  return {
+    ...puzzle,
+    words: puzzle.words.map((word) => word.toLowerCase().trim()),
+    categories: puzzle.categories.map((category) => ({
+      ...category,
+      words: category.words.map((word) => word.toLowerCase().trim()),
+      definitions: category.definitions.map((definition) => ({
+        ...definition,
+        word: definition.word.toLowerCase().trim(),
+      })),
+    })),
+  };
+}
+
+export async function generatePuzzle(
+  date = puzzleDateShanghai(),
+  slot = currentShanghaiSlot(),
+): Promise<Puzzle> {
   if (!process.env.OPENAI_API_KEY) {
     throw new Error("OPENAI_API_KEY is required to generate puzzles.");
   }
 
   const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const response = await openai.responses.create({
-    model: "gpt-5",
+    model: "gpt-5.4-mini",
     input: [
       {
         role: "developer",
@@ -68,7 +87,7 @@ export async function generatePuzzleWithOpenAI(date = puzzleDateShanghai(), slot
       },
       {
         role: "user",
-        content: `Generate one ${slot} Daily Slang Connections puzzle for ${date}. It must have exactly 16 unique slang words or casual phrases and exactly 4 categories of 4 words. Categories must have one clear solution with no ambiguous overlaps. Include spoiler-light hints and simple definitions for every word.`,
+        content: `Generate one ${slot} Daily Slang Connections puzzle for ${date}. It must have exactly 16 unique lowercase slang words or casual phrases and exactly 4 categories of 4 words. Categories must have one clear solution with no ambiguous overlaps. Include spoiler-light hints and simple definitions for every word.`,
       },
     ],
     text: {
@@ -121,8 +140,11 @@ export async function generatePuzzleWithOpenAI(date = puzzleDateShanghai(), slot
     },
   });
 
-  const parsedJson = JSON.parse(response.output_text);
-  const parsed = generatedPuzzleSchema.parse(parsedJson);
+  const parsed = normalizeGeneratedPuzzle(generatedPuzzleSchema.parse(JSON.parse(response.output_text)));
+  const uniqueWords = new Set(parsed.words);
+  if (uniqueWords.size !== 16) {
+    throw new Error("Generated puzzle must contain 16 unique words.");
+  }
   if (!validateCategoryCoverage(parsed.words, parsed.categories)) {
     throw new Error("Generated puzzle category words do not exactly match the 16 puzzle words.");
   }

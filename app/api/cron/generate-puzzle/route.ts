@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { generatePuzzleWithOpenAI } from "@/lib/generatePuzzle";
+import { generatePuzzle } from "@/lib/generatePuzzle";
 import { createServiceSupabaseClient } from "@/lib/supabase";
 
 export const runtime = "nodejs";
@@ -24,7 +24,7 @@ export async function GET(request: Request) {
     );
   }
 
-  const puzzle = await generatePuzzleWithOpenAI();
+  const puzzle = await generatePuzzle();
   const { error } = await supabase.from("puzzles").upsert(
     {
       date: puzzle.date,
