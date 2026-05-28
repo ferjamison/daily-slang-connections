@@ -25,11 +25,11 @@ export type SlangMeaningPage = {
 export const pillarPages: PillarPage[] = [
   {
     slug: "daily-slang-puzzle",
-    title: "Daily Slang Puzzle",
-    description: "Play a daily slang puzzle built around casual English, hidden categories, and quick word-grouping logic.",
+    title: "Daily Slang Puzzle: Learn American Slang with a Daily Word Game",
+    description: "A daily American slang puzzle for English learners with 16 words, 4 groups, hints, answers, and simple usage notes.",
     keyword: "daily slang puzzle",
     intro:
-      "A daily slang puzzle is a quick word game where the board is built from casual English instead of formal vocabulary. You look at short phrases, reactions, texting language, and everyday expressions, then find the hidden connection between four words at a time.",
+      "A daily slang puzzle is a quick English word game built around casual American speech. Every board gives you 16 slang words or phrases, and your job is to sort them into 4 groups of 4. Each group has a shared meaning, usage situation, or tone.",
     exampleGroups: [
       { name: "sounds excellent", words: ["fire", "lit", "dope", "sick"], note: "All four can praise something in casual speech." },
       { name: "seems suspicious", words: ["sus", "shady", "sketchy", "off"], note: "These point to doubt, risk, or a bad feeling." },
@@ -38,11 +38,11 @@ export const pillarPages: PillarPage[] = [
   },
   {
     slug: "american-slang-quiz",
-    title: "American Slang Quiz",
-    description: "Try an American slang quiz that turns casual phrases into a daily category game.",
-    keyword: "american slang quiz",
+    title: "American Slang Quiz for English Learners",
+    description: "An American slang quiz with simple meanings, examples, tone notes, and daily grouping challenges.",
+    keyword: "american slang quiz for english learners",
     intro:
-      "An American slang quiz should feel playful, not like a worksheet. Daily Slang Connections turns common casual phrases into a category puzzle, so the challenge is not only knowing one definition but spotting which phrases belong together.",
+      "An American slang quiz should test more than dictionary definitions. Daily Slang Connections uses a daily grouping challenge, so you can check whether you understand the meaning, tone, and real-life use of common American slang.",
     exampleGroups: [
       { name: "agreement", words: ["bet", "say less", "i'm down", "sounds good"], note: "Each one can accept a plan or show agreement." },
       { name: "money talk", words: ["broke", "loaded", "pricey", "ballin'"], note: "The category is built around cost, cash, or wealth." },
@@ -50,42 +50,16 @@ export const pillarPages: PillarPage[] = [
     ],
   },
   {
-    slug: "gen-z-slang-quiz",
-    title: "Gen Z Slang Quiz",
-    description: "A Gen Z slang quiz with category-style puzzles, common meanings, and simple answer notes.",
-    keyword: "gen z slang quiz",
-    intro:
-      "A Gen Z slang quiz works best when it focuses on phrases people actually see in comments, texts, streams, and casual conversation. The puzzle format keeps the board fair: four words must share a clean idea, not just a vague internet vibe.",
-    exampleGroups: [
-      { name: "truth or emphasis", words: ["no cap", "for real", "dead serious", "not kidding"], note: "These all make a statement feel honest or emphatic." },
-      { name: "mood or atmosphere", words: ["vibe", "energy", "aesthetic", "feel"], note: "These are used to describe the impression something gives." },
-      { name: "showing off", words: ["flex", "brag", "stunt", "showboat"], note: "The common idea is displaying status or skill." },
-    ],
-  },
-  {
     slug: "slang-word-grouping-game",
-    title: "Slang Word Grouping Game",
-    description: "A slang word grouping game where 16 phrases hide 4 categories every day.",
+    title: "Slang Word Grouping Game: Learn Slang by Categories",
+    description: "A word grouping game that helps you learn American slang by categories, meanings, situations, and tone.",
     keyword: "slang word grouping game",
     intro:
-      "A slang word grouping game asks you to compare phrases by meaning, context, and tone. Instead of asking one question at a time, the board gives you 16 options and lets you discover the pattern through elimination.",
+      "A slang word grouping game asks you to compare casual phrases by meaning, context, and tone. Instead of answering one quiz question at a time, you get 16 words and discover the hidden categories through elimination.",
     exampleGroups: [
       { name: "texting back", words: ["hit me up", "dm me", "text me", "ping me"], note: "These all mean to contact someone." },
       { name: "relaxed", words: ["chill", "laid-back", "low-key", "easygoing"], note: "These describe a calm mood or style." },
       { name: "too much", words: ["extra", "over the top", "dramatic", "doing the most"], note: "The shared idea is exaggeration." },
-    ],
-  },
-  {
-    slug: "slang-categories-game",
-    title: "Slang Categories Game",
-    description: "Play a slang categories game with daily boards, hints, answers, and archive puzzles.",
-    keyword: "slang categories game",
-    intro:
-      "A slang categories game is built around clean categories. Every answer should make sense after the reveal: the words may look different, but they share a use case, a feeling, a social situation, or a common meaning.",
-    exampleGroups: [
-      { name: "gossip", words: ["tea", "spill", "drama", "receipts"], note: "These often appear when people talk about gossip or proof." },
-      { name: "leaving", words: ["bounce", "dip", "head out", "take off"], note: "These are casual ways to say someone is leaving." },
-      { name: "good deal", words: ["steal", "bargain", "cheap", "worth it"], note: "The shared idea is price and value." },
     ],
   },
 ];
@@ -132,5 +106,5 @@ export function getSlangMeaningPage(slug: string) {
 }
 
 export function getSeoSlugs() {
-  return [...pillarPages.map((page) => page.slug), ...slangMeaningPages.map((page) => page.slug)];
+  return pillarPages.map((page) => page.slug);
 }

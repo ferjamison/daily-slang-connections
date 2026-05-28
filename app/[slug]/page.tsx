@@ -59,6 +59,7 @@ function PillarContent({ slug }: { slug: string }) {
       <section className="card prose">
         <p className="eyebrow">{page.keyword}</p>
         <h1>{page.title}</h1>
+        <h2>Quick Answer</h2>
         <p>{page.intro}</p>
         <p>
           The game is simple to start and hard enough to replay: scan the board, choose four words
@@ -83,7 +84,7 @@ function PillarContent({ slug }: { slug: string }) {
       </section>
 
       <section className="card prose">
-        <h2>How to Play</h2>
+        <h2>How It Works</h2>
         <ol>
           <li>Read every word before making a move.</li>
           <li>Choose exactly four words or phrases that belong together.</li>
@@ -100,6 +101,11 @@ function PillarContent({ slug }: { slug: string }) {
           A slower first scan usually beats a fast guess. Mark the words that feel obvious, then
           look for the words that are flexible. Flexible slang is often the key to the board because
           it can tempt you into the wrong group.
+        </p>
+        <p>
+          This is different from a normal slang quiz. A quiz usually asks, "What does this word
+          mean?" A grouping game asks a sharper question: "Which four words work in the same
+          situation?" That makes the puzzle better for real slang, because slang depends on context.
         </p>
       </section>
 
@@ -124,7 +130,7 @@ function PillarContent({ slug }: { slug: string }) {
       </section>
 
       <section className="card prose">
-        <h2>Why It Helps You Read Casual English</h2>
+        <h2>Why It Helps English Learners</h2>
         <p>
           Slang changes quickly, but the situations behind slang are stable. People still agree,
           cancel, praise, doubt, joke, flirt, complain, and react. A category puzzle trains you to
@@ -134,6 +140,12 @@ function PillarContent({ slug }: { slug: string }) {
           That makes the game useful even when a word is new. If three phrases clearly point to
           texting and one unfamiliar phrase fits the same scene, the board gives you a reasonable
           guess. The answer notes then confirm the meaning in plain English.
+        </p>
+        <p>
+          For English learners, this matters because casual English often feels easy word by word
+          but confusing in real messages. Phrases like <strong>no cap</strong>,{" "}
+          <strong>left on read</strong>, or <strong>say less</strong> are not hard because of
+          grammar. They are hard because they carry tone, timing, and social meaning.
         </p>
       </section>
 
@@ -173,7 +185,7 @@ function PillarContent({ slug }: { slug: string }) {
       </section>
 
       <section className="card prose">
-        <h2>Related Guides</h2>
+        <h2>Related Slang Meanings</h2>
         <div className="article-list">
           {relatedMeanings.map((meaning) => (
             <Link href={`/${meaning.slug}`} key={meaning.slug}>
