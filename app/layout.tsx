@@ -36,7 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/about">About</Link>
               <Link href="/contact">Contact</Link>
               <Link href="/privacy-policy">Privacy Policy</Link>
-              <Link href="/terms">Terms</Link>
+              <Link href="/terms">Terms of Service</Link>
               <Link href="/learn">Learn</Link>
             </nav>
             <p>

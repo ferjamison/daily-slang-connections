@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms",
-  description: "Terms of use for Daily Slang Connections.",
+  title: "Terms of Service",
+  description: "Terms of Service for Daily Slang Connections.",
 };
 
 export default function TermsPage() {
   return (
     <main className="page narrow prose">
-      <h1>Terms</h1>
+      <h1>Terms of Service</h1>
       <section className="card prose">
         <p>Last updated: May 28, 2026</p>
         <p>
