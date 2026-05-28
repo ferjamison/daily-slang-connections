@@ -369,6 +369,59 @@ button {
   font-weight: 850;
 }
 
+.dialogue {
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  border-radius: 8px;
+  padding: 12px;
+  display: grid;
+  gap: 6px;
+}
+
+.dialogue p {
+  margin: 0;
+}
+
+.comparison-table {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.comparison-row {
+  min-width: 760px;
+  display: grid;
+  grid-template-columns: 0.8fr 1.4fr 1.1fr 1.3fr 1.3fr 1.2fr;
+  border-top: 1px solid var(--line);
+}
+
+.comparison-row:first-child {
+  border-top: 0;
+}
+
+.comparison-row span {
+  padding: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+  border-left: 1px solid var(--line);
+}
+
+.comparison-row span:first-child {
+  border-left: 0;
+  color: var(--ink);
+  font-weight: 850;
+}
+
+.comparison-row.header {
+  background: var(--surface-2);
+}
+
+.comparison-row.header span {
+  color: var(--ink);
+  font-weight: 900;
+}
+
 @media (max-width: 720px) {
   .topbar {
     padding: 0 10px;

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getPuzzleByDate } from "@/lib/puzzles";
-import { slangMeaningPages } from "@/lib/seoContent";
+import { coreSlangPages, slangMeaningPages } from "@/lib/seoContent";
 
 export async function generateMetadata({
   params,
@@ -18,7 +18,17 @@ export async function generateMetadata({
 export default async function DatedAnswersPage({ params }: { params: Promise<{ date: string }> }) {
   const { date } = await params;
   const puzzle = await getPuzzleByDate(date, "morning");
-  const meaningMap = new Map(slangMeaningPages.map((page) => [page.phrase.toLowerCase(), page]));
+  const meaningEntries: [string, { slug: string; title: string; summary: string }][] = [
+    ...slangMeaningPages.map((page): [string, { slug: string; title: string; summary: string }] => [
+      page.phrase.toLowerCase(),
+      { slug: page.slug, title: `What does ${page.phrase} mean?`, summary: page.shortMeaning },
+    ]),
+    ...coreSlangPages.map((page): [string, { slug: string; title: string; summary: string }] => [
+      page.phrase.toLowerCase(),
+      { slug: page.slug, title: page.title, summary: page.quickMeaning },
+    ]),
+  ];
+  const meaningMap = new Map(meaningEntries);
 
   return (
     <main className="page narrow prose">
@@ -54,6 +64,31 @@ export default async function DatedAnswersPage({ params }: { params: Promise<{ d
             meaning, situation, or tone. If you missed this group, look for the shared scene rather
             than the exact dictionary definition.
           </p>
+          <div className="definition-row">
+            <strong>Examples:</strong>
+            <span>
+              A: "That sounds like {category.words[0]}." B: "Exactly, it fits the {category.name}
+              group." / A: "Would {category.words[1] ?? category.words[0]} work here?" B: "Yes,
+              same situation."
+            </span>
+          </div>
+          <div className="definition-row">
+            <strong>Close trap:</strong>
+            <span>
+              A close trap is any word that feels casual but does not share this group's main
+              meaning, tone, or situation. Check whether the word answers the same social question:
+              praise, suspicion, texting, money, plans, or mood.
+            </span>
+          </div>
+          <div className="definition-row">
+            <strong>Related guide:</strong>
+            <span>
+              Use the linked slang guides below when one of this group's words has a full meaning
+              page. If no exact guide is available yet, compare this group with the main{" "}
+              <Link href="/daily-slang-puzzle">daily slang puzzle guide</Link> to understand how
+              meaning, tone, and situation connect.
+            </span>
+          </div>
           <div className="definition-table">
             {category.definitions.map((definition) => {
               const guide = meaningMap.get(definition.word.toLowerCase());
@@ -65,7 +100,7 @@ export default async function DatedAnswersPage({ params }: { params: Promise<{ d
                     Example: "{definition.word}" can work when the conversation fits the category
                     <strong> {category.name}</strong>.
                   </p>
-                  {guide ? <Link href={`/${guide.slug}`}>Read the {definition.word} meaning guide</Link> : null}
+                  {guide ? <Link href={`/${guide.slug}`}>Related guide: {guide.title}</Link> : null}
                 </div>
               );
             })}

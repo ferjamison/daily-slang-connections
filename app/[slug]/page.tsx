@@ -12,6 +12,93 @@ import {
   slangMeaningPages,
 } from "@/lib/seoContent";
 
+const dialogueExamples: Record<string, { a: string; b: string }[]> = {
+  "is-sus-rude": [
+    { a: "That account just asked for my password.", b: "Yeah, that's sus. Don't reply." },
+    { a: "Can I say he looks sus?", b: "Maybe say the situation feels sus. It sounds less personal." },
+    { a: "This deal is almost too cheap.", b: "Sus, but maybe check the reviews first." },
+  ],
+  "is-no-cap-offensive": [
+    { a: "No cap, that was the best episode.", b: "Not offensive at all. Just casual." },
+    { a: "Can I write no cap in my essay?", b: "No, use honestly or seriously." },
+    { a: "No cap, your design looks great.", b: "Thanks, I appreciate it." },
+  ],
+  "is-low-key-positive-or-negative": [
+    { a: "That cafe is low-key amazing.", b: "Positive. You mean it's quietly really good." },
+    { a: "I'm low-key annoyed.", b: "Negative, but softer than saying you're angry." },
+    { a: "I low-key want to go home.", b: "Neutral. It just makes the feeling sound less intense." },
+  ],
+  "how-do-i-reply-to-no-cap": [
+    { a: "No cap, this pizza is perfect.", b: "Fr. It's so good." },
+    { a: "No cap, I think she's the best player.", b: "You're not wrong." },
+    { a: "No cap, that test was brutal.", b: "Exactly. I was struggling too." },
+  ],
+  "how-to-respond-thats-fire": [
+    { a: "Your jacket is fire.", b: "Thanks, I just got it." },
+    { a: "That beat is fire.", b: "Right? I've had it on repeat." },
+    { a: "This edit is fire.", b: "Appreciate it. It took forever." },
+  ],
+  "sus-vs-shady-vs-sketchy": [
+    { a: "That link looks sus.", b: "Yeah, don't click it." },
+    { a: "That seller seems shady.", b: "Agreed. The story keeps changing." },
+    { a: "This parking lot feels sketchy.", b: "Let's leave and find another one." },
+  ],
+  "fire-vs-lit-vs-dope": [
+    { a: "This song is fire.", b: "No cap, the chorus is perfect." },
+    { a: "The party was lit.", b: "I know, everyone was dancing." },
+    { a: "Your poster design is dope.", b: "Thanks, I wanted it to feel clean." },
+  ],
+  "ghosted-vs-left-on-read": [
+    { a: "He hasn't replied for two weeks.", b: "That sounds like ghosted." },
+    { a: "She saw my message and didn't answer.", b: "That's left on read, at least for now." },
+    { a: "Is one missed reply ghosting?", b: "Not really. Ghosting is more of a pattern." },
+  ],
+  "slang-people-use-when-texting": [
+    { a: "Hit me up when you get there.", b: "Bet, I'll text you." },
+    { a: "No cap, I'm tired.", b: "Same. I'm low-key done too." },
+    { a: "She left me on read.", b: "Ouch. Maybe she's busy." },
+  ],
+  "slang-people-use-in-dating": [
+    { a: "He ghosted after the first date.", b: "That's rough. His loss." },
+    { a: "She has great energy.", b: "Yeah, the vibe is good." },
+    { a: "He flaked again.", b: "That might be a red flag." },
+  ],
+};
+
+const comparisonRows: Record<string, { term: string; meaning: string; tone: string; usedFor: string; example: string; safer: string }[]> = {
+  "sus-vs-shady-vs-sketchy": [
+    { term: "sus", meaning: "suspicious or not trustworthy", tone: "casual, internet-style", usedFor: "quick reactions online or in texts", example: "That link looks sus.", safer: "suspicious" },
+    { term: "shady", meaning: "dishonest or morally questionable", tone: "critical", usedFor: "people, deals, behavior", example: "That deal sounds shady.", safer: "questionable" },
+    { term: "sketchy", meaning: "unsafe, unreliable, or suspicious", tone: "warning", usedFor: "places, websites, plans", example: "This area feels sketchy.", safer: "unsafe" },
+  ],
+  "fire-vs-lit-vs-dope": [
+    { term: "fire", meaning: "really good or impressive", tone: "excited praise", usedFor: "music, food, outfits, ideas", example: "This song is fire.", safer: "excellent" },
+    { term: "lit", meaning: "exciting, fun, full of energy", tone: "party-like, energetic", usedFor: "events, parties, concerts", example: "The party was lit.", safer: "exciting" },
+    { term: "dope", meaning: "cool, stylish, impressive", tone: "relaxed praise", usedFor: "design, fashion, music, art", example: "That jacket is dope.", safer: "cool" },
+  ],
+  "ghosted-vs-left-on-read": [
+    { term: "ghosted", meaning: "stopped replying completely", tone: "hurt, disappointed", usedFor: "dating, jobs, friendships", example: "He ghosted me after two dates.", safer: "stopped responding" },
+    { term: "left on read", meaning: "saw a message but did not reply", tone: "awkward, annoyed", usedFor: "one message or short silence", example: "She left me on read.", safer: "did not reply" },
+  ],
+};
+
+const sceneVocabulary: Record<string, { category: string; words: string[]; note: string }[]> = {
+  "slang-people-use-when-texting": [
+    { category: "Agreement", words: ["bet", "say less", "for sure", "sounds good", "I'm down"], note: "Use these when accepting a plan or agreeing quickly." },
+    { category: "Honesty or emphasis", words: ["no cap", "fr", "for real", "deadass", "not gonna lie"], note: "Use these when a message needs stronger truth or emphasis." },
+    { category: "No reply", words: ["left on read", "ghosted", "ignored", "no response", "went silent"], note: "These describe message silence or someone not answering." },
+    { category: "Contacting someone", words: ["hit me up", "dm me", "text me", "ping me", "hmu"], note: "These are casual ways to ask someone to contact you." },
+    { category: "Soft reactions", words: ["low-key", "same", "valid", "mood", "ouch"], note: "These are short emotional replies common in texting." },
+  ],
+  "slang-people-use-in-dating": [
+    { category: "No reply or disappearing", words: ["ghosted", "left on read", "went silent", "ignored", "no response"], note: "These describe communication problems." },
+    { category: "Canceling plans", words: ["flaked", "bailed", "ditched", "canceled last minute", "stood me up"], note: "These describe unreliable dating plans." },
+    { category: "Attraction", words: ["rizz", "vibe", "chemistry", "cute", "a catch"], note: "These describe charm, interest, or attraction." },
+    { category: "Warning signs", words: ["red flag", "sus", "shady", "sketchy", "bad vibes"], note: "These suggest doubt or concern." },
+    { category: "Reactions", words: ["delulu", "ick", "situationship", "hard launch", "soft launch"], note: "These are common in online dating talk and social media." },
+  ],
+};
+
 export function generateStaticParams() {
   return getSeoSlugs().map((slug) => ({ slug }));
 }
@@ -77,6 +164,9 @@ export default async function SeoPage({ params }: { params: Promise<{ slug: stri
 function LongTailGuideContent({ slug }: { slug: string }) {
   const page = getLongTailGuidePage(slug);
   if (!page) notFound();
+  const dialogues = dialogueExamples[slug] ?? [];
+  const rows = comparisonRows[slug] ?? [];
+  const vocabGroups = sceneVocabulary[slug] ?? [];
 
   return (
     <main className="page narrow prose">
@@ -98,16 +188,52 @@ function LongTailGuideContent({ slug }: { slug: string }) {
 
       <section className="card prose">
         <h2>Examples in Real Situations</h2>
-        <p>
-          The best way to understand slang is to place it inside a real situation. Texting slang may
-          sound natural in a group chat, while the same phrase may feel strange in a formal email.
-          Dating slang often carries emotion, and TikTok slang often carries humor or exaggeration.
-        </p>
-        <p>
-          When you read a phrase, ask: Who is speaking? Who are they talking to? Are they joking,
-          warning, flirting, complaining, or agreeing? Those questions usually explain the tone.
-        </p>
+        {dialogues.map((dialogue, index) => (
+          <div className="dialogue" key={`${dialogue.a}-${index}`}>
+            <p><strong>A:</strong> {dialogue.a}</p>
+            <p><strong>B:</strong> {dialogue.b}</p>
+          </div>
+        ))}
       </section>
+
+      {rows.length ? (
+        <section className="card prose">
+          <h2>Meaning, Tone, and Safer Alternatives</h2>
+          <div className="comparison-table">
+            <div className="comparison-row header">
+              <span>Word</span>
+              <span>Meaning</span>
+              <span>Tone</span>
+              <span>Used for</span>
+              <span>Example</span>
+              <span>Safer alternative</span>
+            </div>
+            {rows.map((row) => (
+              <div className="comparison-row" key={row.term}>
+                <span>{row.term}</span>
+                <span>{row.meaning}</span>
+                <span>{row.tone}</span>
+                <span>{row.usedFor}</span>
+                <span>{row.example}</span>
+                <span>{row.safer}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {vocabGroups.length ? (
+        <section className="card prose">
+          <h2>Slang Vocabulary by Category</h2>
+          {vocabGroups.map((group) => (
+            <div className="definition-row" key={group.category}>
+              <strong>{group.category}</strong>
+              <span>{group.words.join(", ")}</span>
+              <p>{group.note}</p>
+            </div>
+          ))}
+        </section>
+      ) : null}
 
       <section className="card prose">
         <h2>How This Connects to the Daily Puzzle</h2>
