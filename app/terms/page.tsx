@@ -30,7 +30,7 @@ export default function TermsPage() {
         <h2>Contact</h2>
         <p>
           For questions about these terms, email{" "}
-          <a href="mailto:contact@dailyslangcategories.com">contact@dailyslangcategories.com</a>.
+          <a href="mailto:ferjamison@gmail.com">ferjamison@gmail.com</a>.
         </p>
       </section>
     </main>

@@ -15,7 +15,7 @@ export default function ContactPage() {
           unclear, outdated, too obscure, or placed in the wrong category, please let us know.
         </p>
         <p>
-          Email: <a href="mailto:contact@dailyslangcategories.com">contact@dailyslangcategories.com</a>
+          Email: <a href="mailto:ferjamison@gmail.com">ferjamison@gmail.com</a>
         </p>
         <p>
           Please include the puzzle date and whether it was the morning or evening puzzle when you
