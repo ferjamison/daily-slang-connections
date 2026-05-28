@@ -353,6 +353,22 @@ button {
   color: var(--ink);
 }
 
+.inline-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.inline-links a {
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  border-radius: 999px;
+  padding: 9px 12px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 850;
+}
+
 @media (max-width: 720px) {
   .topbar {
     padding: 0 10px;

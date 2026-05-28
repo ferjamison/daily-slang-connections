@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getPuzzleByDate } from "@/lib/puzzles";
 import { learnArticles } from "@/lib/learn";
+import { pillarPages, slangMeaningPages } from "@/lib/seoContent";
 
 export default async function HomePage() {
   const puzzle = await getPuzzleByDate();
@@ -100,9 +101,27 @@ export default async function HomePage() {
       </section>
 
       <section className="home-section prose">
+        <h2>Popular Slang Puzzle Pages</h2>
+        <div className="article-list">
+          {pillarPages.map((page) => (
+            <Link href={`/${page.slug}`} key={page.slug}>
+              <strong>{page.title}</strong>
+              <span>{page.description}</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="home-section prose">
         <h2>Slang Guides</h2>
         <div className="article-list">
-          {learnArticles.map((article) => (
+          {slangMeaningPages.slice(0, 8).map((article) => (
+            <Link href={`/${article.slug}`} key={article.slug}>
+              <strong>What does {article.phrase} mean?</strong>
+              <span>{article.shortMeaning}</span>
+            </Link>
+          ))}
+          {learnArticles.slice(0, 2).map((article) => (
             <Link href={`/learn/${article.slug}`} key={article.slug}>
               <strong>{article.title}</strong>
               <span>{article.description}</span>
