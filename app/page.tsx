@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getPuzzleByDate } from "@/lib/puzzles";
 import { learnArticles } from "@/lib/learn";
-import { pillarPages, slangMeaningPages } from "@/lib/seoContent";
+import { coreSlangPages, longTailGuidePages, pillarPages } from "@/lib/seoContent";
 
 export default async function HomePage() {
   const puzzle = await getPuzzleByDate();
@@ -83,6 +83,42 @@ export default async function HomePage() {
       </section>
 
       <section className="home-section prose">
+        <h2>Learn English Slang by Category</h2>
+        <p>
+          Daily Slang Categories helps you understand real slang through word groups, examples,
+          tone, and everyday situations. The game is the daily habit, and the slang pages explain
+          what each phrase means, when people use it, how it sounds, and how to reply naturally.
+        </p>
+        <p>You can learn:</p>
+        <ul>
+          <li>What a slang word means in plain English.</li>
+          <li>When people use it in texting, dating, TikTok, school, gaming, or casual speech.</li>
+          <li>Whether it sounds rude, funny, flirty, sarcastic, dramatic, or casual.</li>
+          <li>How to reply naturally when someone uses the phrase.</li>
+          <li>Similar slang words and the small differences between them.</li>
+        </ul>
+      </section>
+
+      <section className="home-grid">
+        <Link className="card prose" href="/what-does-no-cap-mean">
+          <h2>Slang Meanings</h2>
+          <p>Clear pages for common slang like no cap, sus, low-key, fire, ghosted, and delulu.</p>
+        </Link>
+        <Link className="card prose" href="/slang-people-use-when-texting">
+          <h2>Slang by Situation</h2>
+          <p>Group slang by real situations such as texting, dating, TikTok, compliments, and suspicion.</p>
+        </Link>
+        <Link className="card prose" href="/sus-vs-shady-vs-sketchy">
+          <h2>Slang Differences</h2>
+          <p>Compare similar words, such as sus vs shady vs sketchy or fire vs lit vs dope.</p>
+        </Link>
+        <Link className="card prose" href="/answers">
+          <h2>Daily Answers</h2>
+          <p>Review each daily puzzle with category explanations and simple examples.</p>
+        </Link>
+      </section>
+
+      <section className="home-section prose">
         <h2>Start Playing</h2>
         <div className="article-list">
           <Link href="/today">
@@ -115,16 +151,28 @@ export default async function HomePage() {
       <section className="home-section prose">
         <h2>Slang Guides</h2>
         <div className="article-list">
-          {slangMeaningPages.slice(0, 8).map((article) => (
+          {coreSlangPages.slice(0, 20).map((article) => (
             <Link href={`/${article.slug}`} key={article.slug}>
-              <strong>What does {article.phrase} mean?</strong>
-              <span>{article.shortMeaning}</span>
+              <strong>{article.title}</strong>
+              <span>{article.quickMeaning}</span>
             </Link>
           ))}
           {learnArticles.slice(0, 2).map((article) => (
             <Link href={`/learn/${article.slug}`} key={article.slug}>
               <strong>{article.title}</strong>
               <span>{article.description}</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="home-section prose">
+        <h2>Popular Slang Questions</h2>
+        <div className="article-list">
+          {longTailGuidePages.slice(0, 10).map((guide) => (
+            <Link href={`/${guide.slug}`} key={guide.slug}>
+              <strong>{guide.title}</strong>
+              <span>{guide.description}</span>
             </Link>
           ))}
         </div>

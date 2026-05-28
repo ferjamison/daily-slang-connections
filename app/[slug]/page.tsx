@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
+  coreSlangPages,
+  getCoreSlangPage,
+  getLongTailGuidePage,
   getPillarPage,
   getSeoSlugs,
   getSlangMeaningPage,
@@ -27,6 +30,22 @@ export async function generateMetadata({
     };
   }
 
+  const coreMeaning = getCoreSlangPage(slug);
+  if (coreMeaning) {
+    return {
+      title: coreMeaning.title,
+      description: `${coreMeaning.quickMeaning} See examples, replies, tone, similar slang, and when not to use it.`,
+    };
+  }
+
+  const longTail = getLongTailGuidePage(slug);
+  if (longTail) {
+    return {
+      title: longTail.title,
+      description: longTail.description,
+    };
+  }
+
   const meaning = getSlangMeaningPage(slug);
   if (meaning) {
     return {
@@ -43,16 +62,255 @@ export default async function SeoPage({ params }: { params: Promise<{ slug: stri
   const pillar = getPillarPage(slug);
   if (pillar) return <PillarContent slug={slug} />;
 
+  const coreMeaning = getCoreSlangPage(slug);
+  if (coreMeaning) return <CoreMeaningContent slug={slug} />;
+
+  const longTail = getLongTailGuidePage(slug);
+  if (longTail) return <LongTailGuideContent slug={slug} />;
+
   const meaning = getSlangMeaningPage(slug);
   if (meaning) return <MeaningContent slug={slug} />;
 
   notFound();
 }
 
+function LongTailGuideContent({ slug }: { slug: string }) {
+  const page = getLongTailGuidePage(slug);
+  if (!page) notFound();
+
+  return (
+    <main className="page narrow prose">
+      <section className="card prose">
+        <p className="eyebrow">slang guide</p>
+        <h1>{page.title}</h1>
+        <h2>Quick Answer</h2>
+        <p>{page.intro}</p>
+      </section>
+
+      {page.sections.map((section) => (
+        <section className="card prose" key={section.heading}>
+          <h2>{section.heading}</h2>
+          {section.body.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </section>
+      ))}
+
+      <section className="card prose">
+        <h2>Examples in Real Situations</h2>
+        <p>
+          The best way to understand slang is to place it inside a real situation. Texting slang may
+          sound natural in a group chat, while the same phrase may feel strange in a formal email.
+          Dating slang often carries emotion, and TikTok slang often carries humor or exaggeration.
+        </p>
+        <p>
+          When you read a phrase, ask: Who is speaking? Who are they talking to? Are they joking,
+          warning, flirting, complaining, or agreeing? Those questions usually explain the tone.
+        </p>
+      </section>
+
+      <section className="card prose">
+        <h2>How This Connects to the Daily Puzzle</h2>
+        <p>
+          Daily Slang Connections groups words by meaning, tone, and situation. A guide like this
+          helps you recognize why a word belongs with one group instead of another. Suspicion words,
+          praise words, texting words, and dating words often look unrelated until you notice the
+          shared situation.
+        </p>
+      </section>
+
+      <section className="card prose">
+        <h2>Related Slang Meanings</h2>
+        <div className="article-list">
+          {coreSlangPages.slice(0, 6).map((meaning) => (
+            <Link href={`/${meaning.slug}`} key={meaning.slug}>
+              <strong>{meaning.title}</strong>
+              <span>{meaning.quickMeaning}</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="card prose">
+        <h2>Play Today's Puzzle</h2>
+        <p>
+          Try the daily slang puzzle to practice these words in categories. Each board has 16
+          casual English phrases, 4 hidden groups, hints, and answer explanations.
+        </p>
+        <div className="inline-links">
+          <Link href="/today">Play today</Link>
+          <Link href="/daily-slang-puzzle">Daily slang puzzle</Link>
+          <Link href="/american-slang-quiz">American slang quiz</Link>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function CoreMeaningContent({ slug }: { slug: string }) {
+  const page = getCoreSlangPage(slug);
+  if (!page) notFound();
+  const relatedMeanings = coreSlangPages
+    .filter((item) => item.slug !== page.slug)
+    .filter((item) => item.similar.some((word) => page.similar.includes(word)) || item.tone === page.tone)
+    .slice(0, 4);
+  const fallbackRelated = relatedMeanings.length ? relatedMeanings : coreSlangPages.filter((item) => item.slug !== page.slug).slice(0, 4);
+
+  return (
+    <main className="page narrow prose">
+      <section className="card prose">
+        <p className="eyebrow">slang meaning</p>
+        <h1>{page.title}</h1>
+        <h2>Quick Meaning</h2>
+        <p>{page.quickMeaning}</p>
+      </section>
+
+      <section className="card prose">
+        <h2>Simple Explanation</h2>
+        <p>{page.simpleExplanation}</p>
+        <p>
+          The important thing is not only the dictionary meaning. Slang also carries tone, social
+          context, and timing. A phrase can sound friendly in a group chat but strange in a formal
+          email.
+        </p>
+        <p>
+          A helpful way to read slang is to ask what the speaker is trying to do. They may be
+          agreeing, joking, flirting, complaining, warning someone, or giving a compliment. The same
+          phrase can feel different when the situation changes.
+        </p>
+      </section>
+
+      <section className="card prose">
+        <h2>When People Use It</h2>
+        <p>{page.whenPeopleUseIt}</p>
+        <p>
+          In Daily Slang Connections, this kind of phrase may appear with words that share the same
+          situation, such as texting, dating, school, gaming, TikTok comments, compliments, money,
+          or suspicion.
+        </p>
+        <p>
+          You do not need to use the phrase yourself to understand it. It is still useful to
+          recognize it when you see it in comments, captions, messages, short videos, or casual
+          conversations.
+        </p>
+      </section>
+
+      <section className="card prose">
+        <h2>Tone</h2>
+        <p>{page.tone}</p>
+        <p>
+          Tone matters because two phrases can have similar meanings but feel different. One may
+          sound funny, one may sound rude, one may sound flirty, and one may sound safe for everyday
+          conversation.
+        </p>
+        <p>
+          If you are not sure about the tone, use a safer phrase first. For example, a plain word
+          like "seriously," "suspicious," "expensive," or "great" may work better with teachers,
+          bosses, clients, or people you do not know well.
+        </p>
+      </section>
+
+      <section className="card prose">
+        <h2>Examples</h2>
+        <ol>
+          {page.examples.map((example) => (
+            <li key={example}>{example}</li>
+          ))}
+        </ol>
+        <p>
+          These examples are written like short messages because slang usually sounds most natural
+          in quick, informal sentences. Long formal sentences can make the same word feel forced.
+        </p>
+      </section>
+
+      <section className="card prose">
+        <h2>How to Reply</h2>
+        <ul>
+          {page.replies.map((reply) => (
+            <li key={reply}>{reply}</li>
+          ))}
+        </ul>
+        <p>
+          Your reply depends on whether you agree, feel surprised, want to joke, or want to show
+          support. Short replies usually sound most natural with slang.
+        </p>
+        <p>
+          If the other person is upset, choose a warmer reply. If they are joking, a short playful
+          reply is fine. If they are giving you a compliment, a simple "thanks" is usually enough.
+        </p>
+      </section>
+
+      <section className="card prose">
+        <h2>Similar Slang</h2>
+        <p>{page.similar.join(", ")}</p>
+        <p>
+          Similar slang words are not always interchangeable. They may share a general meaning but
+          differ in age, intensity, setting, or attitude. That is why comparing them is more useful
+          than memorizing one translation.
+        </p>
+      </section>
+
+      <section className="card prose">
+        <h2>Difference</h2>
+        <p>{page.difference}</p>
+        <p>
+          This difference is useful in word-grouping games because close words can be traps. If two
+          words feel similar but belong to different situations, they may not be in the same group.
+        </p>
+      </section>
+
+      <section className="card prose">
+        <h2>When Not to Use It</h2>
+        <p>{page.whenNotToUse}</p>
+        <p>
+          Slang works best when the relationship and setting are relaxed. If the conversation is
+          serious, professional, or with someone you do not know, choose a clearer standard English
+          phrase instead.
+        </p>
+      </section>
+
+      <section className="card prose">
+        <h2>Mini FAQ</h2>
+        {page.faqs.map((faq) => (
+          <div className="definition-row" key={faq.question}>
+            <strong>{faq.question}</strong>
+            <span>{faq.answer}</span>
+          </div>
+        ))}
+      </section>
+
+      <section className="card prose">
+        <h2>Related Daily Puzzle</h2>
+        <p>
+          Play today's puzzle to see how slang words connect by meaning, tone, and situation. The
+          game uses 16 words, 4 hidden categories, hints, answers, and simple explanations.
+        </p>
+        <div className="inline-links">
+          <Link href="/today">Play today</Link>
+          <Link href="/daily-slang-puzzle">Daily slang puzzle</Link>
+          <Link href="/slang-word-grouping-game">Slang word grouping game</Link>
+        </div>
+      </section>
+
+      <section className="card prose">
+        <h2>Related Slang Meanings</h2>
+        <div className="article-list">
+          {fallbackRelated.map((meaning) => (
+            <Link href={`/${meaning.slug}`} key={meaning.slug}>
+              <strong>{meaning.title}</strong>
+              <span>{meaning.quickMeaning}</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
 function PillarContent({ slug }: { slug: string }) {
   const page = getPillarPage(slug);
   if (!page) notFound();
-  const relatedMeanings = slangMeaningPages.slice(0, 10);
+  const relatedMeanings = coreSlangPages.slice(0, 10);
 
   return (
     <main className="page narrow prose">
@@ -189,8 +447,8 @@ function PillarContent({ slug }: { slug: string }) {
         <div className="article-list">
           {relatedMeanings.map((meaning) => (
             <Link href={`/${meaning.slug}`} key={meaning.slug}>
-              <strong>What does {meaning.phrase} mean?</strong>
-              <span>{meaning.shortMeaning}</span>
+              <strong>{meaning.title}</strong>
+              <span>{meaning.quickMeaning}</span>
             </Link>
           ))}
         </div>
