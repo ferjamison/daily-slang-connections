@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { getPuzzleByDate } from "@/lib/puzzles";
+import { getPuzzleWordOrder } from "@/lib/wordOrder";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const puzzle = await getPuzzleByDate();
+  const words = getPuzzleWordOrder(puzzle.words, puzzle.date);
 
   return (
     <main className="home-page">
@@ -24,7 +26,7 @@ export default async function HomePage() {
             <span>16 slang terms</span>
           </div>
           <div className="word-preview-grid" aria-label="Today slang words">
-            {puzzle.words.map((word) => (
+            {words.map((word) => (
               <span key={word}>{word}</span>
             ))}
           </div>

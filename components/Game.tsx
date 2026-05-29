@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { Puzzle, PuzzleCategory } from "@/lib/types";
+import { getPuzzleWordOrder } from "@/lib/wordOrder";
 import "./game.css";
 
 const MAX_MISTAKES = 4;
@@ -17,35 +18,8 @@ function sameSet(a: string[], b: string[]) {
   return left.every((word, index) => word === right[index]);
 }
 
-function hashSeed(seed: string) {
-  let hash = 2166136261;
-  for (let index = 0; index < seed.length; index += 1) {
-    hash ^= seed.charCodeAt(index);
-    hash = Math.imul(hash, 16777619);
-  }
-  return hash >>> 0;
-}
-
-function seededRandom(seed: number) {
-  let value = seed || 1;
-  return () => {
-    value = Math.imul(48271, value) % 0x7fffffff;
-    return (value & 0x7fffffff) / 0x7fffffff;
-  };
-}
-
-function shuffle<T>(items: T[], seedText: string) {
-  const result = [...items];
-  const random = seededRandom(hashSeed(seedText));
-  for (let index = result.length - 1; index > 0; index -= 1) {
-    const swapIndex = Math.floor(random() * (index + 1));
-    [result[index], result[swapIndex]] = [result[swapIndex], result[index]];
-  }
-  return result;
-}
-
 export function Game({ puzzle }: { puzzle: Puzzle }) {
-  const words = useMemo(() => shuffle(puzzle.words, puzzle.date), [puzzle.date, puzzle.words]);
+  const words = useMemo(() => getPuzzleWordOrder(puzzle.words, puzzle.date), [puzzle.date, puzzle.words]);
   const [selected, setSelected] = useState<string[]>([]);
   const [solved, setSolved] = useState<PuzzleCategory[]>([]);
   const [mistakes, setMistakes] = useState(0);
