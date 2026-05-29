@@ -19,18 +19,34 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="site-shell">
           <header className="topbar">
             <Link className="brand" href="/">
-              <strong>Daily Slang</strong>
-              <span>Connections</span>
+              <strong>Daily Slang Connections</strong>
             </Link>
             <nav className="navlinks" aria-label="Main navigation">
               <Link href="/today">Today</Link>
-              <Link href="/hints">Hints</Link>
-              <Link href="/answers">Answers</Link>
               <Link href="/archive">Archive</Link>
-              <Link href="/how-to-play">How to Play</Link>
+              <Link href="/learn">Slang Guide</Link>
             </nav>
           </header>
-          {children}
+          <div className="app-frame">
+            <aside className="sidebar" aria-label="Site sections">
+              <nav>
+                <p>Play</p>
+                <Link href="/today">Daily Puzzle</Link>
+                <Link href="/hints">Today&apos;s Hints</Link>
+                <Link href="/answers">Today&apos;s Answers</Link>
+                <Link href="/archive">Puzzle Archive</Link>
+              </nav>
+              <nav>
+                <p>Learn</p>
+                <Link href="/learn">Slang Dictionary</Link>
+                <Link href="/what-does-ate-mean">TikTok Slang</Link>
+                <Link href="/slang-people-use-when-texting">Texting Slang</Link>
+                <Link href="/what-does-delulu-mean">Gen Z Slang</Link>
+                <Link href="/sus-vs-shady-vs-sketchy">Slang Comparisons</Link>
+              </nav>
+            </aside>
+            <div className="main-area">{children}</div>
+          </div>
           <footer className="site-footer">
             <nav aria-label="Footer navigation">
               <Link href="/about">About</Link>
