@@ -46,15 +46,15 @@ export default async function HomePage() {
       <section className="home-cards" aria-label="Slang guide shortcuts">
         <Link className="card prose" href="/answers">
           <h2>Learn Today&apos;s Slang</h2>
-          <p>查看今日 puzzle 里的词是什么意思。</p>
+          <p>See what today&apos;s puzzle words mean and how they are used.</p>
         </Link>
         <Link className="card prose" href="/slang-people-use-when-texting">
           <h2>Browse Slang Categories</h2>
-          <p>按 texting、dating、TikTok、Gen Z 分类学习。</p>
+          <p>Explore slang by texting, dating, TikTok, and Gen Z situations.</p>
         </Link>
         <Link className="card prose" href="/what-does-no-cap-mean">
           <h2>Popular Slang Meanings</h2>
-          <p>查看 no cap、rizz、lowkey、sus 等热门解释。</p>
+          <p>Read clear meanings for no cap, rizz, low-key, sus, and more.</p>
         </Link>
       </section>
     </main>
