@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   description: "Replay previous Daily Slang Connections puzzles by date and time slot.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function ArchivePage() {
   const puzzles = await getArchivePuzzles();
 

@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   description: "Get spoiler-light hints for today's Daily Slang Connections puzzle.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function HintsPage() {
   const puzzle = await getPuzzleByDate();
 

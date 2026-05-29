@@ -3,6 +3,8 @@ import { getPuzzleByDate } from "@/lib/puzzles";
 import { learnArticles } from "@/lib/learn";
 import { coreSlangPages, longTailGuidePages, pillarPages } from "@/lib/seoContent";
 
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
   const puzzle = await getPuzzleByDate();
   const previewWords = puzzle.words.slice(0, 8);

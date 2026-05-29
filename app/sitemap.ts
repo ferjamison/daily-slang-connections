@@ -5,6 +5,8 @@ import { getSeoSlugs } from "@/lib/seoContent";
 
 const siteUrl = "https://dailyslangcategories.com";
 
+export const dynamic = "force-dynamic";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date();
   const archivePuzzles = await getArchivePuzzles();

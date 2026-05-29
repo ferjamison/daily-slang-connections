@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   description: "Review today's Daily Slang Connections answers with simple English explanations.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function AnswersPage() {
   const puzzle = await getPuzzleByDate();
 

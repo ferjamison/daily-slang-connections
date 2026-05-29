@@ -3,10 +3,6 @@
     {
       "path": "/api/cron/generate-puzzle",
       "schedule": "0 22 * * *"
-    },
-    {
-      "path": "/api/cron/generate-puzzle",
-      "schedule": "0 10 * * *"
     }
   ]
 }

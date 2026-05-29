@@ -4,8 +4,15 @@ import { samplePuzzle } from "./seed";
 
 export type PuzzleSlot = "morning" | "evening";
 
-function todayIsoDate() {
-  return new Date().toISOString().slice(0, 10);
+function todayShanghaiDate() {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Shanghai",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(new Date());
+  const map = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${map.year}-${map.month}-${map.day}`;
 }
 
 function currentShanghaiSlot(): PuzzleSlot {
@@ -21,7 +28,7 @@ function normalizePuzzle(row: unknown): Puzzle {
   return row as Puzzle;
 }
 
-export async function getPuzzleByDate(date = todayIsoDate(), slot: PuzzleSlot = currentShanghaiSlot()): Promise<Puzzle> {
+export async function getPuzzleByDate(date = todayShanghaiDate(), slot: PuzzleSlot = currentShanghaiSlot()): Promise<Puzzle> {
   const supabase = createPublicSupabaseClient();
   if (!supabase) return { ...samplePuzzle, date, slot };
 
