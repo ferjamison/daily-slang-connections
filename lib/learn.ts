@@ -1,4 +1,5 @@
 import { genZSlangArticle } from "./genZArticle";
+import { genZSlang2026H1Article } from "./genZArticle2026H1";
 
 export type LearnArticle = {
   slug: string;
@@ -17,6 +18,7 @@ export type LearnArticle = {
 };
 
 export const learnArticles: LearnArticle[] = [
+  genZSlang2026H1Article,
   genZSlangArticle,
   {
     slug: "what-does-no-cap-mean",
