@@ -23,7 +23,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </Link>
             <nav className="navlinks" aria-label="Main navigation">
               <Link href="/today">Today</Link>
-              <Link href="/archive">Archive</Link>
               <Link href="/learn">Slang Guide</Link>
             </nav>
           </header>
@@ -34,7 +33,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Link href="/today">Daily Puzzle</Link>
                 <Link href="/hints">Today&apos;s Hints</Link>
                 <Link href="/answers">Today&apos;s Answers</Link>
-                <Link href="/archive">Puzzle Archive</Link>
               </nav>
               <nav>
                 <p>Learn</p>

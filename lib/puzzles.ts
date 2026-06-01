@@ -57,3 +57,19 @@ export async function getArchivePuzzles(): Promise<Puzzle[]> {
   if (error || !data?.length) return [samplePuzzle];
   return data.map(normalizePuzzle);
 }
+
+export async function getPuzzleSequence(): Promise<Puzzle[]> {
+  const puzzles = await getArchivePuzzles();
+  return [...puzzles].sort((left, right) => {
+    if (left.date !== right.date) return right.date.localeCompare(left.date);
+    if (left.slot === right.slot) return 0;
+    return left.slot === "evening" ? -1 : 1;
+  });
+}
+
+export function getNextPuzzleHref(puzzles: Puzzle[], current: Puzzle) {
+  const index = puzzles.findIndex((puzzle) => puzzle.date === current.date && puzzle.slot === current.slot);
+  const nextPuzzle = puzzles[index >= 0 ? index + 1 : 0];
+  if (!nextPuzzle) return undefined;
+  return `/today?date=${nextPuzzle.date}&slot=${nextPuzzle.slot}`;
+}

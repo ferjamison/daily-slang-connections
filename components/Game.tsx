@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { Puzzle, PuzzleCategory } from "@/lib/types";
 import { getPuzzleWordOrder } from "@/lib/wordOrder";
@@ -18,7 +19,7 @@ function sameSet(a: string[], b: string[]) {
   return left.every((word, index) => word === right[index]);
 }
 
-export function Game({ puzzle }: { puzzle: Puzzle }) {
+export function Game({ puzzle, nextHref }: { puzzle: Puzzle; nextHref?: string }) {
   const words = useMemo(() => getPuzzleWordOrder(puzzle.words, puzzle.date), [puzzle.date, puzzle.words]);
   const [selected, setSelected] = useState<string[]>([]);
   const [solved, setSolved] = useState<PuzzleCategory[]>([]);
@@ -143,6 +144,11 @@ export function Game({ puzzle }: { puzzle: Puzzle }) {
             <button className="action" onClick={clearSelection}>Clear</button>
             <button className="action" onClick={revealHint}>Hint</button>
             <button className="action primary" onClick={submit} disabled={isComplete}>Submit</button>
+            {isComplete && nextHref ? (
+              <Link className="action primary" href={nextHref}>
+                Next Puzzle
+              </Link>
+            ) : null}
           </div>
         </div>
       </section>

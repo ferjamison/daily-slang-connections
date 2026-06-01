@@ -33,7 +33,7 @@ export default async function DatedPuzzlePage({ params }: { params: Promise<{ da
           <div className="inline-links">
             <Link href={`/hints/${date}`}>Hints for this date</Link>
             <Link href={`/answers/${date}`}>Answers for this date</Link>
-            <Link href="/archive">More archive puzzles</Link>
+            <Link href="/today">Play another puzzle</Link>
           </div>
         </section>
       </section>
