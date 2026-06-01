@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { learnCategories } from "@/lib/learnCategories";
 import { learnArticles } from "@/lib/learn";
 import { coreSlangPages, longTailGuidePages, pillarPages } from "@/lib/seoContent";
 
@@ -31,6 +32,18 @@ export default function LearnPage() {
             <Link href={`/${page.slug}`} key={page.slug}>
               <strong>{page.title}</strong>
               <span>{page.description}</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="card prose">
+        <h2>Slang Categories</h2>
+        <div className="article-list">
+          {learnCategories.map((category) => (
+            <Link href={`/learn/${category.slug}`} key={category.slug}>
+              <strong>{category.title}</strong>
+              <span>{category.description}</span>
             </Link>
           ))}
         </div>

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { learnCategories } from "@/lib/learnCategories";
 import { learnArticles } from "@/lib/learn";
 import { getArchivePuzzles } from "@/lib/puzzles";
 import { getSeoSlugs } from "@/lib/seoContent";
@@ -23,6 +24,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/privacy-policy",
     "/terms",
     "/learn",
+    ...learnCategories.map((category) => `/learn/${category.slug}`),
     ...learnArticles.map((article) => `/learn/${article.slug}`),
     ...getSeoSlugs().map((slug) => `/${slug}`),
     ...dates.flatMap((date) => [`/puzzle/${date}`, `/hints/${date}`, `/answers/${date}`]),
