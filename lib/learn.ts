@@ -1,3 +1,5 @@
+import { genZSlangArticle } from "./genZArticle";
+
 export type LearnArticle = {
   slug: string;
   title: string;
@@ -5,10 +7,17 @@ export type LearnArticle = {
   sections: {
     heading: string;
     body: string[];
+    items?: string[];
+    links?: {
+      href: string;
+      label: string;
+      description: string;
+    }[];
   }[];
 };
 
 export const learnArticles: LearnArticle[] = [
+  genZSlangArticle,
   {
     slug: "what-does-no-cap-mean",
     title: "What Does No Cap Mean?",

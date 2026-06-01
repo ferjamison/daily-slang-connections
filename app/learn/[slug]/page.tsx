@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getLearnArticle, learnArticles } from "@/lib/learn";
 
@@ -39,6 +40,23 @@ export default async function LearnArticlePage({
           {section.body.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
+          {section.items ? (
+            <ol>
+              {section.items.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ol>
+          ) : null}
+          {section.links ? (
+            <div className="article-list">
+              {section.links.map((link) => (
+                <Link href={link.href} key={link.href}>
+                  <strong>{link.label}</strong>
+                  <span>{link.description}</span>
+                </Link>
+              ))}
+            </div>
+          ) : null}
         </section>
       ))}
     </main>

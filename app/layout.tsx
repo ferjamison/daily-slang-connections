@@ -41,7 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Link href="/learn">Slang Dictionary</Link>
                 <Link href="/what-does-ate-mean">TikTok Slang</Link>
                 <Link href="/slang-people-use-when-texting">Texting Slang</Link>
-                <Link href="/what-does-delulu-mean">Gen Z Slang</Link>
+                <Link href="/learn/top-20-gen-z-slang-words-2025">Gen Z Slang</Link>
                 <Link href="/sus-vs-shady-vs-sketchy">Slang Comparisons</Link>
               </nav>
             </aside>
