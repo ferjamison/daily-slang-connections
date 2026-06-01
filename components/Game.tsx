@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { Puzzle, PuzzleCategory } from "@/lib/types";
 import { getPuzzleWordOrder } from "@/lib/wordOrder";
 import "./game.css";
@@ -20,12 +20,21 @@ function sameSet(a: string[], b: string[]) {
 }
 
 export function Game({ puzzle, nextHref }: { puzzle: Puzzle; nextHref?: string }) {
-  const words = useMemo(() => getPuzzleWordOrder(puzzle.words, puzzle.date), [puzzle.date, puzzle.words]);
+  const puzzleKey = `${puzzle.date}-${puzzle.slot}-${puzzle.id}`;
+  const words = useMemo(() => getPuzzleWordOrder(puzzle.words, puzzleKey), [puzzle.words, puzzleKey]);
   const [selected, setSelected] = useState<string[]>([]);
   const [solved, setSolved] = useState<PuzzleCategory[]>([]);
   const [mistakes, setMistakes] = useState(0);
   const [message, setMessage] = useState("Find four slang words that belong together.");
   const [hintIndex, setHintIndex] = useState(0);
+
+  useEffect(() => {
+    setSelected([]);
+    setSolved([]);
+    setMistakes(0);
+    setMessage("Find four slang words that belong together.");
+    setHintIndex(0);
+  }, [puzzleKey]);
 
   const solvedWords = useMemo(
     () => new Set(solved.flatMap((category) => category.words.map(normalize))),

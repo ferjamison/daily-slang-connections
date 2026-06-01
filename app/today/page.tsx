@@ -16,5 +16,5 @@ export default async function TodayPage({
   const puzzle = await getPuzzleByDate(date, slot === "evening" || slot === "morning" ? slot : undefined);
   const puzzles = await getPuzzleSequence();
   const nextHref = getNextPuzzleHref(puzzles, puzzle);
-  return <Game puzzle={puzzle} nextHref={nextHref} />;
+  return <Game key={`${puzzle.date}-${puzzle.slot}-${puzzle.id}`} puzzle={puzzle} nextHref={nextHref} />;
 }

@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const puzzle = await getPuzzleByDate();
-  const words = getPuzzleWordOrder(puzzle.words, puzzle.date);
+  const words = getPuzzleWordOrder(puzzle.words, `${puzzle.date}-${puzzle.slot}-${puzzle.id}`);
 
   return (
     <main className="home-page">
