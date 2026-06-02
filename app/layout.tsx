@@ -36,7 +36,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </nav>
               <nav>
                 <p>Learn</p>
-                <Link href="/learn">Slang Dictionary</Link>
                 <Link href="/what-does-ate-mean">TikTok Slang</Link>
                 <Link href="/slang-people-use-when-texting">Texting Slang</Link>
                 <Link href="/learn/gen-z-slang">Gen Z Slang</Link>
