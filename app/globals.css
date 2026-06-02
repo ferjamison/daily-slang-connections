@@ -456,6 +456,37 @@ button {
   font-weight: 900;
 }
 
+.slang-entry {
+  display: grid;
+  gap: 18px;
+}
+
+.slang-entry h3 {
+  margin: 0 0 8px;
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 21px;
+  line-height: 1.15;
+}
+
+.example-list {
+  display: grid;
+  gap: 10px;
+}
+
+.example-list p {
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  border-radius: 8px;
+  margin: 0;
+  padding: 12px;
+}
+
+.comparison-table.compact .comparison-row {
+  min-width: 0;
+  grid-template-columns: 0.9fr 2fr;
+}
+
 @media (max-width: 720px) {
   .site-shell {
     width: 100%;

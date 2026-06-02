@@ -9,6 +9,23 @@ export type LearnArticle = {
     heading: string;
     body: string[];
     items?: string[];
+    entry?: {
+      pronunciation: string;
+      meaning: string;
+      examples: {
+        context: string;
+        sentence: string;
+      }[];
+      usage: {
+        informal: string;
+        formal: string;
+      };
+      commonMistakes: string[];
+      similar: {
+        term: string;
+        difference: string;
+      }[];
+    };
     links?: {
       href: string;
       label: string;
