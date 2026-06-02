@@ -17,7 +17,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/today",
     "/hints",
     "/answers",
-    "/archive",
     "/how-to-play",
     "/about",
     "/contact",
@@ -28,7 +27,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...learnArticles.map((article) => `/learn/${article.slug}`),
     ...getSeoSlugs().map((slug) => `/${slug}`),
     ...dates.flatMap((date) => [`/puzzle/${date}`, `/hints/${date}`, `/answers/${date}`]),
-    ...archivePuzzles.map((puzzle) => `/archive/${puzzle.date}/${puzzle.slot}`),
   ];
 
   return Array.from(new Set(routes)).map((route) => ({
