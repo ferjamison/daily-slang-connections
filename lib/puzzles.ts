@@ -43,7 +43,21 @@ export async function getPuzzleByDate(date = todayShanghaiDate(), slot: PuzzleSl
   return normalizePuzzle(data);
 }
 
-export async function getArchivePuzzles(): Promise<Puzzle[]> {
+export async function getPuzzleById(id: string): Promise<Puzzle | undefined> {
+  const supabase = createPublicSupabaseClient();
+  if (!supabase) return samplePuzzle.id === id ? samplePuzzle : undefined;
+
+  const { data, error } = await supabase
+    .from("puzzles")
+    .select("*")
+    .eq("id", id)
+    .maybeSingle();
+
+  if (error || !data) return undefined;
+  return normalizePuzzle(data);
+}
+
+export async function getPlayablePuzzles(): Promise<Puzzle[]> {
   const supabase = createPublicSupabaseClient();
   if (!supabase) return [samplePuzzle];
 
@@ -59,7 +73,7 @@ export async function getArchivePuzzles(): Promise<Puzzle[]> {
 }
 
 export async function getPuzzleSequence(): Promise<Puzzle[]> {
-  const puzzles = await getArchivePuzzles();
+  const puzzles = await getPlayablePuzzles();
   return [...puzzles].sort((left, right) => {
     if (left.date !== right.date) return right.date.localeCompare(left.date);
     if (left.slot === right.slot) return 0;
@@ -67,9 +81,9 @@ export async function getPuzzleSequence(): Promise<Puzzle[]> {
   });
 }
 
-export function getNextPuzzleHref(puzzles: Puzzle[], current: Puzzle) {
-  const index = puzzles.findIndex((puzzle) => puzzle.date === current.date && puzzle.slot === current.slot);
-  const nextPuzzle = puzzles[index >= 0 ? index + 1 : 0];
+export function getRandomNextPuzzleHref(puzzles: Puzzle[], current: Puzzle) {
+  const candidates = puzzles.filter((puzzle) => puzzle.id !== current.id);
+  const nextPuzzle = candidates[Math.floor(Math.random() * candidates.length)];
   if (!nextPuzzle) return undefined;
-  return `/today?date=${nextPuzzle.date}&slot=${nextPuzzle.slot}`;
+  return `/today?puzzle=${nextPuzzle.id}`;
 }

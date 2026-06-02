@@ -547,24 +547,24 @@ function PillarContent({ slug }: { slug: string }) {
           aims for categories that become obvious after the reveal.
         </p>
         <p>
-          Strong categories also create better archive pages because each finished puzzle becomes a
-          small reference point. You can return later and see how phrases about texting, money,
-          suspicion, praise, or leaving were separated.
+          Strong categories also make the next puzzle more useful because each finished board
+          becomes a small reference point. You can keep playing and compare how phrases about
+          texting, money, suspicion, praise, or leaving are separated across different boards.
         </p>
       </section>
 
       <section className="card prose">
         <h2>Play Today's Puzzle</h2>
         <p>
-          Start with the current board, then use the archive if you want another round. New puzzles
-          are generated twice a day, so there is always a fresh board and a growing set of past
-          puzzles.
+          Start with the current board, then use Next Puzzle when you want another round. New
+          puzzles are generated twice a day, and older boards stay in the playable pool without
+          turning the site into a dated list.
         </p>
         <div className="inline-links">
           <Link href="/today">Play today</Link>
           <Link href="/hints">Get hints</Link>
           <Link href="/answers">See answers</Link>
-          <Link href="/archive">Browse archive</Link>
+          <Link href="/today">Play another puzzle</Link>
         </div>
       </section>
 
@@ -749,14 +749,14 @@ function MeaningContent({ slug }: { slug: string }) {
           answer notes that explain why each group works.
         </p>
         <p>
-          The archive is also useful because older boards show how the same broad category can be
-          built from different words. A praise group today may use one set of phrases, while another
-          praise group later may use a different set.
+          The next-puzzle flow is useful because older boards can still appear as extra practice
+          without becoming a dated list. A praise group today may use one set of phrases, while
+          another praise group later may use a different set.
         </p>
         <div className="inline-links">
           <Link href="/today">Play today</Link>
           <Link href="/answers">Today's answers</Link>
-          <Link href="/archive">Archive</Link>
+          <Link href="/today">Next puzzle</Link>
         </div>
       </section>
 

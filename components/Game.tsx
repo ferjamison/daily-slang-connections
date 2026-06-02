@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import type { Puzzle, PuzzleCategory } from "@/lib/types";
 import { getPuzzleWordOrder } from "@/lib/wordOrder";
@@ -76,7 +75,7 @@ export function Game({ puzzle, nextHref }: { puzzle: Puzzle; nextHref?: string }
     setSelected([]);
     setMessage(
       nextMistakes >= MAX_MISTAKES
-        ? "Game over. Study the answer below and try tomorrow."
+        ? "Game over. Study the answer below, then try another puzzle."
         : `Not quite. ${MAX_MISTAKES - nextMistakes} attempts left.`,
     );
   }
@@ -90,6 +89,11 @@ export function Game({ puzzle, nextHref }: { puzzle: Puzzle; nextHref?: string }
   function clearSelection() {
     setSelected([]);
     setMessage("Selection cleared.");
+  }
+
+  function goToNextPuzzle() {
+    if (!nextHref) return;
+    window.location.assign(nextHref);
   }
 
   return (
@@ -154,9 +158,9 @@ export function Game({ puzzle, nextHref }: { puzzle: Puzzle; nextHref?: string }
             <button className="action" onClick={revealHint}>Hint</button>
             <button className="action primary" onClick={submit} disabled={isComplete}>Submit</button>
             {isComplete && nextHref ? (
-              <Link className="action primary" href={nextHref}>
+              <button className="action primary" onClick={goToNextPuzzle}>
                 Next Puzzle
-              </Link>
+              </button>
             ) : null}
           </div>
         </div>

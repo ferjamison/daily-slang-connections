@@ -25,7 +25,7 @@ export default function TermsPage() {
         <h2>Availability</h2>
         <p>
           We may update, remove, or change site features at any time. We do not guarantee that every
-          puzzle or archive entry will remain available forever.
+          puzzle or previous game board will remain available forever.
         </p>
         <h2>Contact</h2>
         <p>

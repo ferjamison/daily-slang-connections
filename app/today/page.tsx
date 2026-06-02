@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Game } from "@/components/Game";
-import { getNextPuzzleHref, getPuzzleByDate, getPuzzleSequence } from "@/lib/puzzles";
+import { getPuzzleByDate, getPuzzleById, getPuzzleSequence, getRandomNextPuzzleHref } from "@/lib/puzzles";
 
 export const metadata: Metadata = {
   title: "Today's American Slang Puzzle",
@@ -10,11 +10,13 @@ export const metadata: Metadata = {
 export default async function TodayPage({
   searchParams,
 }: {
-  searchParams: Promise<{ date?: string; slot?: string }>;
+  searchParams: Promise<{ date?: string; puzzle?: string; slot?: string }>;
 }) {
-  const { date, slot } = await searchParams;
-  const puzzle = await getPuzzleByDate(date, slot === "evening" || slot === "morning" ? slot : undefined);
+  const { date, puzzle: puzzleId, slot } = await searchParams;
+  const puzzle =
+    (puzzleId ? await getPuzzleById(puzzleId) : undefined) ??
+    (await getPuzzleByDate(date, slot === "evening" || slot === "morning" ? slot : undefined));
   const puzzles = await getPuzzleSequence();
-  const nextHref = getNextPuzzleHref(puzzles, puzzle);
+  const nextHref = getRandomNextPuzzleHref(puzzles, puzzle);
   return <Game key={`${puzzle.date}-${puzzle.slot}-${puzzle.id}`} puzzle={puzzle} nextHref={nextHref} />;
 }

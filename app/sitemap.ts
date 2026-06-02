@@ -1,17 +1,14 @@
 import type { MetadataRoute } from "next";
 import { learnCategories } from "@/lib/learnCategories";
 import { learnArticles } from "@/lib/learn";
-import { getArchivePuzzles } from "@/lib/puzzles";
 import { getSeoSlugs } from "@/lib/seoContent";
 
 const siteUrl = "https://dailyslangcategories.com";
 
 export const dynamic = "force-dynamic";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
-  const archivePuzzles = await getArchivePuzzles();
-  const dates = Array.from(new Set(archivePuzzles.map((puzzle) => puzzle.date)));
   const routes = [
     "",
     "/today",
@@ -26,16 +23,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...learnCategories.map((category) => `/learn/${category.slug}`),
     ...learnArticles.map((article) => `/learn/${article.slug}`),
     ...getSeoSlugs().map((slug) => `/${slug}`),
-    ...dates.flatMap((date) => [`/puzzle/${date}`, `/hints/${date}`, `/answers/${date}`]),
   ];
 
   return Array.from(new Set(routes)).map((route) => ({
     url: `${siteUrl}${route}`,
     lastModified,
-    changeFrequency:
-      route === "" || route === "/today" || route.startsWith("/puzzle/") || route.startsWith("/answers/")
-        ? "daily"
-        : "weekly",
+    changeFrequency: route === "" || route === "/today" ? "daily" : "weekly",
     priority:
       route === ""
         ? 1
