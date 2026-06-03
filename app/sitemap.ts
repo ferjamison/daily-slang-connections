@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/privacy-policy",
     "/terms",
     "/learn",
+    "/learn/the-slang-blade-method-how-to-master-informal-english-fast",
     ...learnCategories.map((category) => `/learn/${category.slug}`),
     ...learnArticles.map((article) => `/learn/${article.slug}`),
     ...getSeoSlugs().map((slug) => `/${slug}`),
