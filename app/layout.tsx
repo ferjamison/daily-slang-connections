@@ -40,6 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Link href="/slang-people-use-when-texting">Texting Slang</Link>
                 <Link href="/learn/gen-z-slang">Gen Z Slang</Link>
                 <Link href="/sus-vs-shady-vs-sketchy">Slang Comparisons</Link>
+                <Link href="/learn">Learn Slang</Link>
               </nav>
             </aside>
             <div className="main-area">{children}</div>
